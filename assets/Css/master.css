@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: hsl(0, 0% , 12%);
+    color: hsl(0, 0%, 100%);
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.img-box {
+    height: 800px;
+    overflow: hidden;
+    > .img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.5);
+        transition: all 1.2s cubic-bezier(0.17, 0.37, 0.98, 1);
+    }
+}
+.img-box.revealed  .img {
+    transform: scale(1);
+}
+.content-box {
+    padding-inline: 10em;
+    > h3 {
+        text-transform: capitalize;
+        font-size: 3em;
+        margin-block-end: 0.35em;
+    }
+    > p {
+        font-size: 18px;
+        line-height: 2.2;
+    }
+}
+[data-reveal="left"] { clip-path: inset(0 100% 0 0); }
+[data-reveal="right"] { clip-path: inset(0 0 0 100%); }
+[data-reveal="left"].revealed {
+    animation: revealToLeft 1.2s cubic-bezier(0.17, 0.37, 0.98, 1)
+     300ms forwards;
+}
+[data-reveal="right"].revealed {
+    animation: reveaToRight 1.2s cubic-bezier(0.17, 0.37, 0.98, 1)
+     300ms forwards;
+}
+
+@keyframes revealToLeft {
+    0% { clip-path: inset(0 100% 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes reveaToRight {
+    0% { clip-path: inset(0 0 0 100%); }
+    100% { clip-path: inset(0 0 0 0); }
+}
+/* @media (max-width: 767px) {
+    .section {
+        grid-template-columns: 1fr;
+    }
+} */
